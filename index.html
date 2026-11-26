@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Russel Market Store — boutique en ligne et suivi de commandes, livraisons et projets.">
+  <title>Russel Market Store</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Russel Market Store accueil">
+      <span class="brand-mark">R</span><span>RUSSEL <b>MARKET STORE</b></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+    <nav id="mainNav">
+      <a href="#shop">Boutique</a><a href="#tracking">Suivi</a><a href="#projects">Projets</a>
+      <button class="cart-button" id="cartOpen">Panier <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">VOTRE BOUTIQUE, EN UN SEUL ENDROIT</p>
+        <h1>Découvrez. Commandez.<br><em>Suivez en toute simplicité.</em></h1>
+        <p class="hero-text">Bienvenue chez Russel Market Store. Retrouvez une sélection de produits et gardez un œil sur vos commandes, vos livraisons et vos projets.</p>
+        <div class="hero-actions"><a class="btn primary" href="#shop">Découvrir la boutique</a><a class="btn ghost" href="#tracking">Suivre une commande</a></div>
+        <div class="trust-row"><span>✓ Sélection variée</span><span>✓ Suivi simplifié</span><span>✓ Expérience mobile</span></div>
+      </div>
+      <div class="hero-panel">
+        <div class="panel-top"><span class="live-dot"></span> ESPACE CLIENT</div>
+        <div class="panel-icon">📦</div><h3>Tout votre shopping<br>au même endroit.</h3>
+        <div class="mini-progress"><span></span></div>
+        <div class="panel-bottom"><span>Commandes & projets</span><b>RMS</b></div>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-heading"><div><p class="eyebrow">LA SÉLECTION RMS</p><h2>Nos produits</h2><p class="muted">Une boutique généraliste : explorez les catégories et ajoutez vos coups de cœur au panier.</p></div>
+        <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Rechercher un produit…" aria-label="Rechercher un produit"></label>
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-category="Tous">Tout</button>
+        <button class="filter" data-category="Électronique">Électronique</button>
+        <button class="filter" data-category="Maison">Maison</button>
+        <button class="filter" data-category="Mode">Mode</button>
+        <button class="filter" data-category="Accessoires">Accessoires</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="tracking-section" id="tracking">
+      <div class="section-heading"><div><p class="eyebrow">ESPACE DE SUIVI</p><h2>Où en est votre commande ?</h2><p class="muted">Saisissez le numéro reçu après validation de votre commande.</p></div></div>
+      <div class="track-card">
+        <form id="trackingForm" class="track-form"><input id="trackingNumber" placeholder="Ex. RMS-123456" required aria-label="Numéro de commande"><button class="btn primary" type="submit">Suivre</button></form>
+        <div id="trackingResult" class="tracking-result empty-state">Votre statut de commande apparaîtra ici.</div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="section-heading"><div><p class="eyebrow">ORGANISATION & AVANCEMENT</p><h2>Suivi des projets</h2><p class="muted">Un aperçu des projets de la boutique. Vous pouvez ajouter et mettre à jour vos projets sur cet appareil.</p></div><button class="btn dark" id="addProject">＋ Nouveau projet</button></div>
+      <div class="project-grid" id="projectGrid"></div>
+    </section>
+
+    <section class="newsletter">
+      <div><p class="eyebrow">RESTONS EN CONTACT</p><h2>Une question ? Parlons-en.</h2><p>Contactez l'équipe Russel Market Store pour toute demande concernant un produit ou une commande.</p></div>
+      <a class="btn light" href="mailto:contact@russelmarketstore.example?subject=Demande%20Russel%20Market%20Store">Nous contacter ↗</a>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">R</span><span>RUSSEL <b>MARKET STORE</b></span></a><span>© <span id="year"></span> Russel Market Store. Tous droits réservés.</span><span>Boutique • Commandes • Projets</span></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Votre panier" aria-hidden="true">
+    <div class="drawer-head"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2>Mon panier</h2></div><button class="icon-btn" id="cartClose" aria-label="Fermer">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-summary"><div class="total-line"><span>Total estimé</span><b id="cartTotal">0,00 €</b></div><button class="btn primary full" id="checkout">Valider la commande</button><small>Démo : aucun paiement réel n'est effectué.</small></div>
+  </aside>
+
+  <dialog id="projectDialog"><form method="dialog" id="projectForm"><div class="drawer-head"><div><p class="eyebrow">ESPACE PROJETS</p><h2>Nouveau projet</h2></div><button class="icon-btn" value="cancel" aria-label="Fermer">×</button></div><label>Nom du projet<input id="projectName" required maxlength="70" placeholder="Ex. Lancement nouvelle collection"></label><label>Description<input id="projectDescription" maxlength="120" placeholder="Objectif du projet"></label><label>Avancement <output id="progressValue">0%</output><input id="projectProgress" type="range" min="0" max="100" value="0"></label><button class="btn primary full" value="save">Ajouter le projet</button></form></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
